@@ -16,6 +16,7 @@ const contactRoutes = require('./routes/contacts');
 const comboRoutes = require('./routes/combos');
 const couponRoutes = require('./routes/coupons');
 const offerRoutes = require('./routes/offers');
+const heroSlideRoutes = require('./routes/heroSlides');
 const { errorHandler, notFound } = require('./middleware/errorHandler');
 
 const app = express();
@@ -99,6 +100,7 @@ app.use('/api/contacts', contactRoutes);
 app.use('/api/combos', comboRoutes);
 app.use('/api/coupons', couponRoutes);
 app.use('/api/offers', offerRoutes);
+app.use('/api/hero-slides', heroSlideRoutes);
 
 // ── Error Handling ───────────────────────────────────────────
 app.use(notFound);
