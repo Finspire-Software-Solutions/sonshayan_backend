@@ -44,7 +44,7 @@ const BlogService = {
       slug,
       thumbnail,
       content: data.content,
-      author: data.author || 'Son Chayan Team',
+      author: data.author || 'Son Shayan Team',
     });
 
     return BlogModel.findById(id);

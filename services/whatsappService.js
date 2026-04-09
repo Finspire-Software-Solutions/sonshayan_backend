@@ -15,17 +15,17 @@
 
 const STATUS_MESSAGES = {
   confirmed: (name, orderNum) =>
-    `✅ Hi ${name}! Your Son Chayan order *#${orderNum}* has been confirmed. We'll start preparing it shortly.`,
+    `✅ Hi ${name}! Your Son Shayan order *#${orderNum}* has been confirmed. We'll start preparing it shortly.`,
   preparing: (name, orderNum) =>
-    `🍟 Hi ${name}! Your Son Chayan order *#${orderNum}* is now being prepared with care.`,
+    `🍟 Hi ${name}! Your Son Shayan order *#${orderNum}* is now being prepared with care.`,
   shipped: (name, orderNum) =>
-    `📦 Hi ${name}! Your Son Chayan order *#${orderNum}* has been shipped and is on its way!`,
+    `📦 Hi ${name}! Your Son Shayan order *#${orderNum}* has been shipped and is on its way!`,
   out_for_delivery: (name, orderNum) =>
-    `🛵 Hi ${name}! Your Son Chayan order *#${orderNum}* is out for delivery. Expect it soon!`,
+    `🛵 Hi ${name}! Your Son Shayan order *#${orderNum}* is out for delivery. Expect it soon!`,
   delivered: (name, orderNum) =>
-    `🎉 Hi ${name}! Your Son Chayan order *#${orderNum}* has been delivered. Enjoy your chips! Thank you for shopping with us.`,
+    `🎉 Hi ${name}! Your Son Shayan order *#${orderNum}* has been delivered. Enjoy your chips! Thank you for shopping with us.`,
   cancelled: (name, orderNum) =>
-    `❌ Hi ${name}! Unfortunately your Son Chayan order *#${orderNum}* has been cancelled. Contact us if you have questions.`,
+    `❌ Hi ${name}! Unfortunately your Son Shayan order *#${orderNum}* has been cancelled. Contact us if you have questions.`,
 };
 
 const WhatsAppService = {

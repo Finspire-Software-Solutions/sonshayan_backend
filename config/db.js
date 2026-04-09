@@ -1,11 +1,11 @@
 const mysql = require('mysql2/promise');
 
 const pool = mysql.createPool({
-  host: process.env.DB_HOST || 'yamabiko.proxy.rlwy.net',
-  port: process.env.DB_PORT || 43824,
-  user: process.env.DB_USER || 'root',
-  password: process.env.DB_PASSWORD || 'eDxqsUqwUinQAHnPXsHCXTVNmlcFAxfb',
-  database: process.env.DB_NAME || 'railway',
+  host: process.env.DB_HOST || 'bvpu6qq7nfejrnx1c0ky-mysql.services.clever-cloud.com',
+  port: process.env.DB_PORT || 3306,
+  user: process.env.DB_USER || 'uan2gyejedqd4plp',
+  password: process.env.DB_PASSWORD || 'jEGxBRWKUJDL150IXKuQ',
+  database: process.env.DB_NAME || 'bvpu6qq7nfejrnx1c0ky',
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,

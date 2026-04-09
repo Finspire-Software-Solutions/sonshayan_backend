@@ -34,7 +34,7 @@ const BlogModel = {
   async create({ title, slug, thumbnail, content, author }) {
     const [result] = await pool.query(
       'INSERT INTO blogs (title, slug, thumbnail, content, author) VALUES (?, ?, ?, ?, ?)',
-      [title, slug, thumbnail || null, content, author || 'Son Chayan Team']
+      [title, slug, thumbnail || null, content, author || 'Son Shayan Team']
     );
     return result.insertId;
   },

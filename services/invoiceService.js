@@ -17,12 +17,12 @@ const InvoiceService = {
     doc.fillColor('#ffffff')
        .fontSize(28)
        .font('Helvetica-Bold')
-       .text('Son Chayan', 50, 30);
+       .text('Son Shayan', 50, 30);
 
     doc.fontSize(11)
        .font('Helvetica')
        .text('Fresh, Crispy, Delicious Chips', 50, 62)
-       .text('info@sonchayan.com | +94 70 000 0000', 50, 78);
+       .text('sonshayan.com | +94 76 32 44160', 50, 78);
 
     doc.fillColor('#ffffff')
        .fontSize(14)
@@ -129,11 +129,11 @@ const InvoiceService = {
     const footerY = doc.page.height - 80;
     doc.moveTo(50, footerY).lineTo(doc.page.width - 50, footerY).strokeColor('#e5e7eb').stroke();
     doc.fillColor('#6b7280').font('Helvetica').fontSize(9)
-       .text('Thank you for shopping with Son Chayan!', 50, footerY + 10, {
+       .text('Thank you for shopping with Son Shayan!', 50, footerY + 10, {
          align: 'center',
          width: doc.page.width - 100,
        })
-       .text('For questions, contact us at info@sonchayan.com or +94 70 000 0000', 50, footerY + 25, {
+       .text('For questions, contact us at sonshayan26@gmail.com or +94 70 000 0000', 50, footerY + 25, {
          align: 'center',
          width: doc.page.width - 100,
        });
