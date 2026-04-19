@@ -13,6 +13,11 @@ const notFound = (req, res, next) => {
 const errorHandler = (err, req, res, next) => {
   const statusCode = err.status || err.statusCode || 500;
 
+  // CORS errors - return 403 instead of 500
+  if (err.message && err.message.includes('CORS')) {
+    return res.status(403).json({ success: false, error: err.message });
+  }
+
   // Multer file size error
   if (err.code === 'LIMIT_FILE_SIZE') {
     return res.status(400).json({ success: false, error: 'File size exceeds 5MB limit.' });
