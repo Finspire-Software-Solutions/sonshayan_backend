@@ -7,9 +7,9 @@ const parseBool = (val) => {
 
 const buildImageUrl = (req, filePath) => {
   if (!filePath) return null;
+  // Cloudinary URLs are already full URLs
   if (filePath.startsWith('http')) return filePath;
-  const normalized = filePath.replace(/\\/g, '/');
-  return `${req.protocol}://${req.get('host')}/${normalized}`;
+  return filePath;
 };
 
 const HeroSlideService = {
@@ -37,12 +37,8 @@ const HeroSlideService = {
 
     const data = {
       ...body,
-      image_url: imageFile
-        ? imageFile.path.replace(/\\/g, '/')
-        : (body.image_url || null),
-      background_image: bgFile
-        ? bgFile.path.replace(/\\/g, '/')
-        : (body.background_image || null),
+      image_url: imageFile ? imageFile.path : (body.image_url || null),
+      background_image: bgFile ? bgFile.path : (body.background_image || null),
       is_active: body.is_active !== undefined ? parseBool(body.is_active) : 1,
       order_index: Number(body.order_index) || 0,
     };
@@ -66,10 +62,10 @@ const HeroSlideService = {
     const data = {
       ...body,
       image_url: imageFile
-        ? imageFile.path.replace(/\\/g, '/')
+        ? imageFile.path
         : (body.image_url !== undefined ? body.image_url : existing.image_url),
       background_image: bgFile
-        ? bgFile.path.replace(/\\/g, '/')
+        ? bgFile.path
         : (body.background_image !== undefined ? body.background_image : existing.background_image),
       is_active: body.is_active !== undefined ? parseBool(body.is_active) : existing.is_active,
       order_index: body.order_index !== undefined ? Number(body.order_index) : existing.order_index,

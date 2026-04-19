@@ -6,7 +6,7 @@ const reviewController = require('../controllers/reviewController');
 const { authenticate } = require('../middleware/auth');
 const { authorize } = require('../middleware/roleCheck');
 const { validate } = require('../middleware/validate');
-const upload = require('../middleware/upload');
+const { upload, uploadToCloudinary } = require('../middleware/upload');
 
 const productValidation = [
   body('name').notEmpty().withMessage('Product name is required.'),
@@ -36,6 +36,7 @@ router.post(
     { name: 'main_image', maxCount: 1 },
     { name: 'gallery', maxCount: 10 },
   ]),
+  uploadToCloudinary,
   productValidation,
   validate,
   productController.create
@@ -49,6 +50,7 @@ router.put(
     { name: 'main_image', maxCount: 1 },
     { name: 'gallery', maxCount: 10 },
   ]),
+  uploadToCloudinary,
   productValidation,
   validate,
   productController.update

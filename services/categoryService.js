@@ -20,7 +20,7 @@ const CategoryService = {
     const existing = await CategoryModel.findBySlug(slug);
     if (existing) throw { status: 409, message: 'Category with this name already exists.' };
 
-    const image = file ? file.path.replace(/\\/g, '/') : null;
+    const image = file ? file.path : null;
 
     const id = await CategoryModel.create({
       name: data.name,
@@ -37,7 +37,7 @@ const CategoryService = {
     if (!category) throw { status: 404, message: 'Category not found.' };
 
     const slug = generateSlug(data.name);
-    const image = file ? file.path.replace(/\\/g, '/') : category.image;
+    const image = file ? file.path : category.image;
 
     await CategoryModel.update(id, {
       name: data.name,

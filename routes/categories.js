@@ -5,7 +5,7 @@ const categoryController = require('../controllers/categoryController');
 const { authenticate } = require('../middleware/auth');
 const { authorize } = require('../middleware/roleCheck');
 const { validate } = require('../middleware/validate');
-const upload = require('../middleware/upload');
+const { upload, uploadToCloudinary } = require('../middleware/upload');
 
 // Public
 router.get('/', categoryController.getAll);
@@ -17,6 +17,7 @@ router.post(
   authenticate,
   authorize('ADMIN'),
   upload.single('image'),
+  uploadToCloudinary,
   [body('name').notEmpty().withMessage('Category name is required.')],
   validate,
   categoryController.create
@@ -27,6 +28,7 @@ router.put(
   authenticate,
   authorize('ADMIN'),
   upload.single('image'),
+  uploadToCloudinary,
   [body('name').notEmpty().withMessage('Category name is required.')],
   validate,
   categoryController.update

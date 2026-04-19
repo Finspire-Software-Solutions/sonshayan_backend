@@ -1,12 +1,4 @@
-const fs = require('fs');
-const path = require('path');
 const ComboModel = require('../models/comboModel');
-
-const deleteFile = (filePath) => {
-  if (!filePath) return;
-  const fullPath = path.join(__dirname, '..', filePath);
-  if (fs.existsSync(fullPath)) fs.unlinkSync(fullPath);
-};
 
 const ComboService = {
   async getCombos() {
@@ -25,7 +17,7 @@ const ComboService = {
 
   async createCombo(data, files) {
     const imageFile = files?.combo_image?.[0];
-    const image = imageFile ? imageFile.path.replace(/\\/g, '/') : null;
+    const image = imageFile ? imageFile.path : null;
 
     const comboId = await ComboModel.create({
       name: data.name,
@@ -59,8 +51,7 @@ const ComboService = {
 
     let image = combo.image;
     if (files?.combo_image?.[0]) {
-      deleteFile(combo.image);
-      image = files.combo_image[0].path.replace(/\\/g, '/');
+      image = files.combo_image[0].path;
     }
 
     await ComboModel.update(id, {
@@ -93,7 +84,6 @@ const ComboService = {
   async deleteCombo(id) {
     const combo = await ComboModel.findById(id);
     if (!combo) throw { status: 404, message: 'Combo not found.' };
-    deleteFile(combo.image);
     await ComboModel.delete(id);
   },
 };

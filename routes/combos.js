@@ -5,7 +5,7 @@ const comboController = require('../controllers/comboController');
 const { authenticate } = require('../middleware/auth');
 const { authorize } = require('../middleware/roleCheck');
 const { validate } = require('../middleware/validate');
-const upload = require('../middleware/upload');
+const { upload, uploadToCloudinary } = require('../middleware/upload');
 
 const comboValidation = [
   body('name').notEmpty().withMessage('Combo name is required.'),
@@ -24,6 +24,7 @@ router.post(
   authenticate,
   authorize('ADMIN'),
   upload.fields([{ name: 'combo_image', maxCount: 1 }]),
+  uploadToCloudinary,
   comboValidation,
   validate,
   comboController.create
@@ -34,6 +35,7 @@ router.put(
   authenticate,
   authorize('ADMIN'),
   upload.fields([{ name: 'combo_image', maxCount: 1 }]),
+  uploadToCloudinary,
   comboValidation,
   validate,
   comboController.update

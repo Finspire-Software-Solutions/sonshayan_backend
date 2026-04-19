@@ -37,7 +37,7 @@ const BlogService = {
 
   async createBlog(data, file) {
     const slug = generateSlug(data.title);
-    const thumbnail = file ? file.path.replace(/\\/g, '/') : null;
+    const thumbnail = file ? file.path : null;
 
     const id = await BlogModel.create({
       title: data.title,
@@ -55,7 +55,7 @@ const BlogService = {
     if (!blog) throw { status: 404, message: 'Blog not found.' };
 
     const slug = data.title !== blog.title ? generateSlug(data.title) : blog.slug;
-    const thumbnail = file ? file.path.replace(/\\/g, '/') : blog.thumbnail;
+    const thumbnail = file ? file.path : blog.thumbnail;
 
     await BlogModel.update(id, {
       title: data.title,

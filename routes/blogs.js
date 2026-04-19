@@ -5,7 +5,7 @@ const blogController = require('../controllers/blogController');
 const { authenticate } = require('../middleware/auth');
 const { authorize } = require('../middleware/roleCheck');
 const { validate } = require('../middleware/validate');
-const upload = require('../middleware/upload');
+const { upload, uploadToCloudinary } = require('../middleware/upload');
 
 // Public routes
 router.get('/', blogController.getAll);
@@ -20,6 +20,7 @@ router.post(
   authenticate,
   authorize('ADMIN'),
   upload.single('thumbnail'),
+  uploadToCloudinary,
   [
     body('title').notEmpty().withMessage('Blog title is required.'),
     body('content').notEmpty().withMessage('Blog content is required.'),
@@ -33,6 +34,7 @@ router.put(
   authenticate,
   authorize('ADMIN'),
   upload.single('thumbnail'),
+  uploadToCloudinary,
   [
     body('title').notEmpty().withMessage('Blog title is required.'),
     body('content').notEmpty().withMessage('Blog content is required.'),

@@ -1,17 +1,9 @@
 const slugify = require('slugify');
-const fs = require('fs');
-const path = require('path');
 const ProductModel = require('../models/productModel');
 const ProductVariantModel = require('../models/productVariantModel');
 
 const generateSlug = (name) =>
   slugify(name, { lower: true, strict: true, trim: true });
-
-const deleteFile = (filePath) => {
-  if (!filePath) return;
-  const fullPath = path.join(__dirname, '..', filePath);
-  if (fs.existsSync(fullPath)) fs.unlinkSync(fullPath);
-};
 
 const ProductService = {
   async getProducts(query) {
@@ -56,7 +48,7 @@ const ProductService = {
     if (existing) throw { status: 409, message: 'A product with this name already exists.' };
 
     const mainImageFile = files?.main_image?.[0];
-    const main_image = mainImageFile ? mainImageFile.path.replace(/\\/g, '/') : null;
+    const main_image = mainImageFile ? mainImageFile.path : null;
 
     const productId = await ProductModel.create({
       name: data.name,
@@ -75,7 +67,7 @@ const ProductService = {
     // Handle gallery images
     const galleryFiles = files?.gallery || [];
     for (let i = 0; i < galleryFiles.length; i++) {
-      const imgPath = galleryFiles[i].path.replace(/\\/g, '/');
+      const imgPath = galleryFiles[i].path;
       await ProductModel.addImage(productId, imgPath, i);
     }
 
@@ -91,8 +83,7 @@ const ProductService = {
 
     // Replace main image if new file uploaded
     if (files?.main_image?.[0]) {
-      deleteFile(product.main_image);
-      main_image = files.main_image[0].path.replace(/\\/g, '/');
+      main_image = files.main_image[0].path;
     }
 
     await ProductModel.update(id, {
@@ -113,7 +104,7 @@ const ProductService = {
     // Add new gallery images if uploaded
     const galleryFiles = files?.gallery || [];
     for (let i = 0; i < galleryFiles.length; i++) {
-      const imgPath = galleryFiles[i].path.replace(/\\/g, '/');
+      const imgPath = galleryFiles[i].path;
       await ProductModel.addImage(id, imgPath, i);
     }
 
@@ -123,8 +114,6 @@ const ProductService = {
   async deleteProduct(id) {
     const product = await ProductModel.findById(id);
     if (!product) throw { status: 404, message: 'Product not found.' };
-
-    deleteFile(product.main_image);
     await ProductModel.delete(id);
   },
 
