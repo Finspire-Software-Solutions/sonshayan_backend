@@ -38,10 +38,10 @@ app.use('/api', limiter);
 
 // ── CORS ─────────────────────────────────────────────────────
 const ALLOWED_ORIGINS = [
-  process.env.CLIENT_URL || 'http://localhost:5173', // Web frontend (Vite)
-  'http://localhost:8081',                            // Expo web (React Native)
-  'http://localhost:19006',
-  'https://sonshayan.com',                           // Expo web (older default port)
+  process.env.CLIENT_URL || 'http://localhost:5173', // Web frontend (Vite) - dev
+  'https://sonshayan.com',                            // Web frontend - production
+  'http://localhost:8081',                            // Mobile web (Expo) - dev
+  'http://localhost:19006',                           // Mobile web (Expo older) - dev
 ];
 
 app.use(
