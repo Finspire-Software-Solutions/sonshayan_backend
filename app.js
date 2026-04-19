@@ -40,7 +40,8 @@ app.use('/api', limiter);
 const ALLOWED_ORIGINS = [
   process.env.CLIENT_URL || 'http://localhost:5173', // Web frontend (Vite)
   'http://localhost:8081',                            // Expo web (React Native)
-  'http://localhost:19006',                           // Expo web (older default port)
+  'http://localhost:19006',
+  'https://sonshayan.com',                           // Expo web (older default port)
 ];
 
 app.use(
