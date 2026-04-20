@@ -38,10 +38,16 @@ app.use('/api', limiter);
 
 // ── CORS ─────────────────────────────────────────────────────
 const ALLOWED_ORIGINS = [
-  process.env.CLIENT_URL || 'http://localhost:5173', // Web frontend (Vite) - dev
-  'https://sonshayan.com',                            // Web frontend - production
-  'http://localhost:8081',                            // Mobile web (Expo) - dev
-  'http://localhost:19006',                           // Mobile web (Expo older) - dev
+  // Development
+  'http://localhost:5173',
+  'http://127.0.0.1:5173',
+  process.env.CLIENT_URL || 'http://localhost:5173',
+  // Production
+  'https://sonshayan.com',
+  // Mobile Expo
+  'http://localhost:8081',
+  'http://localhost:19006',
+  'http://localhost:5000',
 ];
 
 app.use(
