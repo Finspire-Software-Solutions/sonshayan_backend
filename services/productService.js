@@ -60,6 +60,7 @@ const ProductService = {
       category_id: data.category_id || null,
       stock: parseInt(data.stock) || 0,
       main_image,
+      is_active: data.is_active !== undefined ? (data.is_active === 'true' || data.is_active === true ? 1 : 0) : 1,
       is_popular: data.is_popular === 'true' || data.is_popular === true ? 1 : 0,
       fresh_today: data.fresh_today === 'true' || data.fresh_today === true ? 1 : 0,
     });
@@ -96,7 +97,7 @@ const ProductService = {
       category_id: data.category_id || null,
       stock: parseInt(data.stock) || 0,
       main_image,
-      is_active: data.is_active !== undefined ? data.is_active : product.is_active,
+      is_active: data.is_active !== undefined ? (data.is_active === 'true' || data.is_active === true ? 1 : 0) : product.is_active,
       is_popular: data.is_popular === 'true' || data.is_popular === true ? 1 : 0,
       fresh_today: data.fresh_today === 'true' || data.fresh_today === true ? 1 : 0,
     });
@@ -143,7 +144,7 @@ const ProductService = {
       weight_grams: data.weight_grams ? parseFloat(data.weight_grams) : null,
       price: parseFloat(data.price),
       price_per_kg: data.price_per_kg ? parseFloat(data.price_per_kg) : null,
-      is_active: data.is_active !== undefined ? data.is_active : 1,
+      is_active: data.is_active !== undefined ? (data.is_active === 'true' || data.is_active === true ? 1 : 0) : 1,
     });
     return ProductVariantModel.findById(variantId);
   },
@@ -156,7 +157,7 @@ const ProductService = {
       weight_grams: data.weight_grams ? parseFloat(data.weight_grams) : null,
       price: parseFloat(data.price),
       price_per_kg: data.price_per_kg ? parseFloat(data.price_per_kg) : null,
-      is_active: data.is_active !== undefined ? parseInt(data.is_active) : variant.is_active,
+      is_active: data.is_active !== undefined ? (data.is_active === 'true' || data.is_active === true ? 1 : 0) : variant.is_active,
     });
     return ProductVariantModel.findById(variantId);
   },
